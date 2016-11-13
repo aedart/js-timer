@@ -4,6 +4,10 @@ import BaseTimer from '../../src/Timers/BaseTimer';
 import Timeout from '../../src/Timers/Timeout';
 import Interval from '../../src/Timers/Interval';
 import Limited from '../../src/Timers/Limited';
+import TimerMaster from '../../src/TimerMaster';
+import TimerServiceProvider from '../../src/Providers/TimerServiceProvider';
+import Facade from '@aedart/js-facade';
+import IoC from '@aedart/js-ioc';
 import faker from 'faker';
 
 /**
@@ -12,6 +16,38 @@ import faker from 'faker';
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
 class TestHelper {
+
+    /*********************************************************************************
+     * Before and After methods
+     ********************************************************************************/
+
+    static before(){
+        Facade.ioc = IoC;
+        IoC.instances.set('ioc', IoC);
+
+        this.provider = new TimerServiceProvider(IoC);
+        this.provider.register();
+    }
+
+    static after(){
+        IoC.flush();
+
+        Facade.ioc = null;
+        Facade.clearResolvedInstances();
+    }
+
+    /*********************************************************************************
+     * Helpers
+     ********************************************************************************/
+
+    /**
+     * Returns a new Timer Master instance
+     *
+     * @return {TimerMaster}
+     */
+    static makeTimerMaster(){
+        return new TimerMaster();
+    }
 
     /**
      * Returns a new Empty Timer (dummy implementation of Base Timer)
