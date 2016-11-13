@@ -7,7 +7,7 @@ import Facade from '@aedart/js-facade';
 import IoC from '@aedart/js-ioc';
 import { mix } from 'mixwith/src/mixwith';
 
-describe('Timer Master Aware Mixin', function(){
+describe('Time Master Aware Mixin', function(){
 
     afterEach(() => {
         TestHelper.after();
