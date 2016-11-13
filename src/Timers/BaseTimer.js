@@ -1,5 +1,8 @@
 'use strict';
 
+import TimerMasterAware from './../Mixins/TimerMasterAware';
+import { mix } from 'mixwith/src/mixwith';
+
 /**
  * id symbol
  *
@@ -39,7 +42,7 @@ const _nativeId = Symbol('native-id');
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-class BaseTimer {
+class BaseTimer extends mix(Object).with(TimerMasterAware) {
 
     /**
      * Create a Base Timer instance
@@ -50,6 +53,8 @@ class BaseTimer {
      * @throws {TypeError} Abstract class
      */
     constructor(id, options = {callback: () => {}, delay: 1000}){
+        super();
+
         if(new.target === BaseTimer){
             throw new TypeError('Cannot create Base Timer instance, class is abstract');
         }
