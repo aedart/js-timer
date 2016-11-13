@@ -2,6 +2,7 @@
 
 import BaseTimer from '../../src/Timers/BaseTimer';
 import Timeout from '../../src/Timers/Timeout';
+import Interval from '../../src/Timers/Interval';
 import faker from 'faker';
 
 /**
@@ -48,6 +49,26 @@ class TestHelper {
         }
 
         return new Timeout(id, {
+            callback: callback,
+            delay: delay
+        });
+    }
+
+    /**
+     * Returns a new Interval instance
+     *
+     * @param {string|null} [id] If null, an id is generated
+     * @param {function} [callback] Callback function to invoke
+     * @param {number} [delay]      Delay in milliseconds
+     *
+     * @return {Interval}
+     */
+    static makeInterval(id = null, callback = () => {}, delay = 1000){
+        if(id === null){
+            id = faker.random.uuid();
+        }
+
+        return new Interval(id, {
             callback: callback,
             delay: delay
         });
