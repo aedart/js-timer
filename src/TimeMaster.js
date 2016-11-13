@@ -138,7 +138,7 @@ class TimeMaster {
     /**
      * Returns this Timer Master's iterator
      *
-     * @return {Iterator.<BaseTimer>}
+     * @return {Iterator.<string, BaseTimer>}
      */
     [Symbol.iterator](){
         return this.timers[Symbol.iterator]();
