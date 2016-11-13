@@ -1,5 +1,9 @@
 'use strict';
 
+import Timeout from './Timers/Timeout';
+import Interval from './Timers/Interval';
+import Limited from './Timers/Limited';
+
 /**
  * timers symbol
  *
@@ -25,6 +29,74 @@ class TimerMaster {
     }
 
     /**
+     * Add a timeout - a callback to be executed once
+     *
+     * @param {string} id           A human readable timer id, e.g. "enemiesSpawnTimer"
+     * @param {function} [callback] Callback function to invoke
+     * @param {number} [delay]      Delay in milliseconds
+     * @param {boolean} [start]     If true, will start the timer
+     *
+     * @return {Timeout}
+     */
+    addTimeout(id, callback = () => {}, delay = 1000, start = true){
+        let timer = new Timeout(id, {
+            callback: callback,
+            delay: delay
+        });
+
+        return this.add(timer, start);
+    }
+
+    /**
+     * Add an interval - a callback to be executed repeatedly
+     *
+     * @param {string} id           A human readable timer id, e.g. "balanceChecker"
+     * @param {function} [callback] Callback function to invoke
+     * @param {number} [delay]      Delay in milliseconds
+     * @param {boolean} [start]     If true, will start the timer
+     *
+     * @return {Interval}
+     */
+    addInterval(id, callback = () => {}, delay = 1000, start = true){
+        let timer = new Interval(id, {
+            callback: callback,
+            delay: delay
+        });
+
+        return this.add(timer, start);
+    }
+
+    /**
+     * Add a limited interval - a callback to be executed a certain amount of times
+     *
+     * @param {string} id                   A human readable timer id, e.g. "remoteCallAttempt"
+     * @param {function} [callback]         Callback function to invoke
+     * @param {number} [delay]              Delay in milliseconds
+     * @param {boolean} [start]             If true, will start the timer
+     * @param {number} [limit]              Amount of times callback is allowed to be executed
+     * @param {function} [onLimitReached]   Callback to be invoked once the limit has been reached
+     *
+     * @return {Interval}
+     */
+    addLimitedInterval(
+        id,
+        callback = () => {},
+        delay = 1000,
+        start = true,
+        limit: 10,
+        onLimitReached: () => {}
+    ){
+        let timer = new Limited(id, {
+            callback: callback,
+            delay: delay,
+            limit: limit,
+            onLimitReached: onLimitReached
+        });
+
+        return this.add(timer, start);
+    }
+
+    /**
      * Set timers
      *
      * @param {Map.<string, BaseTimer>} timers Map of all timers
@@ -43,6 +115,36 @@ class TimerMaster {
     }
 
     /**
+     * Returns an array of all active timers
+     *
+     * A timer is considered to be active, if it's native id
+     * is not undefined. The native id corresponds to the
+     * id that `setTimeout()` or `setInterval()` returns.
+     *
+     * @return {Array.<BaseTimer>}
+     */
+    get activeTimers(){
+        let timers = [];
+
+        this.timers.forEach((timer) => {
+            if(timer.nativeId !== undefined){
+                timers[timers.length] = timer;
+            }
+        });
+
+        return timers;
+    }
+
+    /**
+     * Returns this Timer Master's iterator
+     *
+     * @return {Iterator.<BaseTimer>}
+     */
+    [Symbol.iterator](){
+        return this.timers[Symbol.iterator]();
+    }
+
+    /**
      * Add a timer
      *
      * Method will delete eventual existing timer that shared the same id
@@ -50,13 +152,27 @@ class TimerMaster {
      * @see TimerMaster.delete()
      *
      * @param {BaseTimer} timer
+     * @param {boolean} [start]     If true, will start the timer
+     *
+     * @return {BaseTimer} The timer that has been added
      */
-    add(timer){
+    add(timer, start = true){
         // If there is an old timer, we must delete it
         this.delete(timer.id);
 
+        // Add Timer Master reference
+        timer.timerMaster = this;
+
         // Set new timer
         this.timers.set(timer.id, timer);
+
+        // Start the timer if needed
+        if(start){
+            timer.start();
+        }
+
+        // Finally, return the timer
+        return timer;
     }
 
     /**
@@ -96,6 +212,16 @@ class TimerMaster {
         }
 
         return false;
+    }
+
+    /**
+     * Returns the current amount of timers
+     * in this Timer Master
+     *
+     * @return {number}
+     */
+    count(){
+        return this.timers.size;
     }
 
     /**
