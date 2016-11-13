@@ -56,7 +56,7 @@ class TimerMaster {
         this.delete(timer.id);
 
         // Set new timer
-        this.timers.set(id, timer);
+        this.timers.set(timer.id, timer);
     }
 
     /**
