@@ -3,7 +3,7 @@
 import BaseTimer from './BaseTimer';
 
 /**
- * Interval
+ * Interval Timer
  *
  * @description Wrapper for setInterval
  *

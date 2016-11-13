@@ -3,7 +3,7 @@
 import BaseTimer from './BaseTimer';
 
 /**
- * Timeout
+ * Timeout Timer
  *
  * @description Wrapper for setTimeout
  *
