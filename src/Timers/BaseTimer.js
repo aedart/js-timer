@@ -47,6 +47,8 @@ class BaseTimer {
      * @param {string} id           Id of timer
      * @param {function} [callback] Callback function to invoke
      * @param {number} [delay]      Delay in milliseconds
+     *
+     * @throws {TypeError} Abstract class
      */
     constructor(id, callback = () => {}, delay = 1000){
         if(new.target === BaseTimer){
@@ -137,6 +139,24 @@ class BaseTimer {
      */
     get [Symbol.toStringTag](){
         return this.constructor.name + '(' + this.id + ')';
+    }
+
+    /**
+     * Start the timer
+     *
+     * Method ensures to set the native id
+     */
+    start(){
+        throw new Error('Start method is abstract, please implement in sub-class');
+    }
+
+    /**
+     * Stops and cancels the timer
+     *
+     * Method ensures to clear internal id
+     */
+    cancel(){
+        throw new Error('Cancel method is abstract, please implement in sub-class');
     }
 }
 
