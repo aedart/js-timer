@@ -15,11 +15,10 @@ class Timeout extends BaseTimer {
      * Create a new Timeout instance
      *
      * @param {string} id           Id of timer
-     * @param {function} [callback] Callback function to invoke
-     * @param {number} [delay]      Delay in milliseconds
+     * @param {object} [options]    Timer options
      */
-    constructor(id, callback = () => {}, delay = 1000){
-        super(id, callback, delay);
+    constructor(id, options = {callback: () => {}, delay: 1000}){
+        super(id, options);
     }
 
     /**

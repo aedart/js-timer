@@ -47,7 +47,10 @@ class TestHelper {
             id = faker.random.uuid();
         }
 
-        return new Timeout(id, callback, delay);
+        return new Timeout(id, {
+            callback: callback,
+            delay: delay
+        });
     }
 }
 
