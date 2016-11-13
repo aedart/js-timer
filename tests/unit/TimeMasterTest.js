@@ -4,7 +4,7 @@ import TestHelper from '../helpers/TestHelper';
 import BaseTimer from '../../src/Timers/BaseTimer';
 import faker from 'faker';
 
-fdescribe('Time Master', function(){
+describe('Time Master', function(){
 
     /********************************************************************
      * Helpers
