@@ -1,7 +1,7 @@
 'use strict';
 
-import TimerMasterAware from '../../../src/Mixins/TimerMasterAware';
-import TimerMaster from '../../../src/TimerMaster';
+import TimeMasterAware from '../../../src/Mixins/TimeMasterAware';
+import TimeMaster from '../../../src/TimeMaster';
 import TestHelper from '../../helpers/TestHelper';
 import Facade from '@aedart/js-facade';
 import IoC from '@aedart/js-ioc';
@@ -17,34 +17,34 @@ describe('Timer Master Aware Mixin', function(){
      * Helpers
      *******************************************************************/
 
-    class DummyClass extends mix(Object).with(TimerMasterAware) {}
+    class DummyClass extends mix(Object).with(TimeMasterAware) {}
 
     /********************************************************************
      * Actual tests
      *******************************************************************/
 
-    it('has null as default Timer Master', function () {
+    it('has null as default Time Master', function () {
         let dummy = new DummyClass();
 
-        expect(dummy.timerMaster).toBeNull();
+        expect(dummy.timeMaster).toBeNull();
     });
 
-    it('can get and set Timer Master', function () {
+    it('can get and set Time Master', function () {
         let dummy = new DummyClass();
 
-        let timerMaster = TestHelper.makeTimerMaster();
+        let timeMaster = TestHelper.makeTimeMaster();
 
-        dummy.timerMaster = timerMaster;
+        dummy.timeMaster = timeMaster;
 
-        expect(dummy.timerMaster).toBe(timerMaster);
+        expect(dummy.timeMaster).toBe(timeMaster);
     });
 
-    it('returns Timer Master, when service has been registered', function () {
+    it('returns Time Master, when service has been registered', function () {
         TestHelper.before();
 
         let dummy = new DummyClass();
 
-        expect(dummy.timerMaster).not.toBeNull();
-        expect(dummy.timerMaster instanceof TimerMaster).toBe(true);
+        expect(dummy.timeMaster).not.toBeNull();
+        expect(dummy.timeMaster instanceof TimeMaster).toBe(true);
     });
 });

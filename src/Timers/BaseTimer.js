@@ -1,6 +1,6 @@
 'use strict';
 
-import TimerMasterAware from './../Mixins/TimerMasterAware';
+import TimerMasterAware from './../Mixins/TimeMasterAware';
 import { mix } from 'mixwith/src/mixwith';
 
 /**
@@ -70,7 +70,7 @@ class BaseTimer extends mix(Object).with(TimerMasterAware) {
     /**
      * Set id
      *
-     * @param {string} identifier TimerMaster id
+     * @param {string} identifier TimeMaster id
      */
     set id(identifier) {
         this[_id] = identifier;
@@ -79,7 +79,7 @@ class BaseTimer extends mix(Object).with(TimerMasterAware) {
     /**
      * Get id
      *
-     * @return {string} TimerMaster id
+     * @return {string} TimeMaster id
      */
     get id() {
         return this[_id];

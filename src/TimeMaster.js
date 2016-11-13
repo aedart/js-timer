@@ -13,13 +13,13 @@ import Limited from './Timers/Limited';
 const _timers = Symbol('timers');
 
 /**
- * TimerMaster
+ * TimeMaster
  *
  * @description Collection of various timers
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
-class TimerMaster {
+class TimeMaster {
 
     /**
      * Create a new Timer Master instance
@@ -83,8 +83,8 @@ class TimerMaster {
         callback = () => {},
         delay = 1000,
         start = true,
-        limit: 10,
-        onLimitReached: () => {}
+        limit = 10,
+        onLimitReached = () => {}
     ){
         let timer = new Limited(id, {
             callback: callback,
@@ -149,7 +149,7 @@ class TimerMaster {
      *
      * Method will delete eventual existing timer that shared the same id
      *
-     * @see TimerMaster.delete()
+     * @see TimeMaster.delete()
      *
      * @param {BaseTimer} timer
      * @param {boolean} [start]     If true, will start the timer
@@ -161,7 +161,7 @@ class TimerMaster {
         this.delete(timer.id);
 
         // Add Timer Master reference
-        timer.timerMaster = this;
+        timer.timeMaster = this;
 
         // Set new timer
         this.timers.set(timer.id, timer);
@@ -227,7 +227,7 @@ class TimerMaster {
     /**
      * Cancels and deletes all existing timers
      *
-     * @see TimerMaster.delete()
+     * @see TimeMaster.delete()
      */
     clear(){
         // Cancel and delete all timers
@@ -254,4 +254,4 @@ class TimerMaster {
     }
 }
 
-export default TimerMaster;
+export default TimeMaster;

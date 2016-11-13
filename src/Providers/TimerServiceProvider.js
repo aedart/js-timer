@@ -1,7 +1,7 @@
 'use strict';
 
 import { TIME_MASTER_CLASS } from './../Contracts/Services';
-import TimeMaster from './../TimerMaster';
+import TimeMaster from './../TimeMaster';
 import ServiceProvider from '@aedart/js-service-provider';
 
 /**

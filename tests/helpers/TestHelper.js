@@ -4,7 +4,7 @@ import BaseTimer from '../../src/Timers/BaseTimer';
 import Timeout from '../../src/Timers/Timeout';
 import Interval from '../../src/Timers/Interval';
 import Limited from '../../src/Timers/Limited';
-import TimerMaster from '../../src/TimerMaster';
+import TimeMaster from '../../src/TimeMaster';
 import TimerServiceProvider from '../../src/Providers/TimerServiceProvider';
 import Facade from '@aedart/js-facade';
 import IoC from '@aedart/js-ioc';
@@ -43,10 +43,10 @@ class TestHelper {
     /**
      * Returns a new Timer Master instance
      *
-     * @return {TimerMaster}
+     * @return {TimeMaster}
      */
-    static makeTimerMaster(){
-        return new TimerMaster();
+    static makeTimeMaster(){
+        return new TimeMaster();
     }
 
     /**

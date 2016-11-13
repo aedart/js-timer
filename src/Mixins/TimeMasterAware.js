@@ -2,59 +2,62 @@
 
 import { IoCFacade } from '@aedart/js-service-provider';
 import { TIME_MASTER_CLASS } from './../Contracts/Services';
+
+'use strict';
+
 import {Mixin} from 'mixwith/src/mixwith';
 
 /**
- * timer Master symbol
+ * time Master symbol
  *
  * @type {Symbol}
  * @private
  */
-const _timerMaster = Symbol('timer-master');
+const _timeMaster = Symbol('time-master');
 
 /**
- * Timer Master Aware Mixin
+ * Time Master Aware Mixin
  *
- * @return {TimerMasterAware}
+ * @return {TimeMasterAware}
  */
-export default Mixin((superClass) => class TimerMasterAware extends superClass {
+export default Mixin((superClass) => class TimeMasterAware extends superClass {
 
     /**
-     * Set timer Master
+     * Set time Master
      *
-     * @param {TimerMaster|null} instance Timer Master instance
+     * @param {TimeMaster|null} instance Time Master instance
      */
-    set timerMaster(instance) {
-        this[_timerMaster] = instance;
+    set timeMaster(instance) {
+        this[_timeMaster] = instance;
     }
 
     /**
-     * Get timer Master
+     * Get time Master
      *
-     * @return {TimerMaster|null} Timer Master instance
+     * @return {TimeMaster|null} Time Master instance
      */
-    get timerMaster() {
-        if (!this.hasTimerMaster()) {
-            this.timerMaster = this.defaultTimerMaster;
+    get timeMaster() {
+        if (!this.hasTimeMaster()) {
+            this.timeMaster = this.defaultTimeMaster;
         }
-        return this[_timerMaster];
+        return this[_timeMaster];
     }
 
     /**
-     * Check if "timer Master" has been set
+     * Check if "time Master" has been set
      *
      * @return {boolean}
      */
-    hasTimerMaster() {
-        return (this[_timerMaster] !== undefined && this[_timerMaster] !== null);
+    hasTimeMaster() {
+        return (this[_timeMaster] !== undefined && this[_timeMaster] !== null);
     }
 
     /**
-     * Get a default "timer Master"
+     * Get a default "time Master"
      *
-     * @return {TimerMaster|null} A default "timer Master" value or null if none is available
+     * @return {TimeMaster|null} A default "time Master" value or null if none is available
      */
-    get defaultTimerMaster() {
+    get defaultTimeMaster() {
         return IoCFacade.make(TIME_MASTER_CLASS);
     }
 });
