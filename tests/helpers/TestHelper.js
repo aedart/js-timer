@@ -1,6 +1,7 @@
 'use strict';
 
 import BaseTimer from '../../src/Timers/BaseTimer';
+import Timeout from '../../src/Timers/Timeout';
 import faker from 'faker';
 
 /**
@@ -27,6 +28,23 @@ class TestHelper {
         class DummyEmptyTimer extends BaseTimer {}
 
         return new DummyEmptyTimer(id, callback, delay);
+    }
+
+    /**
+     * Returns a new Timeout instance
+     *
+     * @param {string|null} [id] If null, an id is generated
+     * @param {function} [callback] Callback function to invoke
+     * @param {number} [delay]      Delay in milliseconds
+     *
+     * @return {Timeout}
+     */
+    static makeTimeout(id = null, callback = () => {}, delay = 1000){
+        if(id === null){
+            id = faker.random.uuid();
+        }
+
+        return new Timeout(id, callback, delay);
     }
 }
 
