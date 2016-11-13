@@ -27,7 +27,10 @@ class TestHelper {
 
         class DummyEmptyTimer extends BaseTimer {}
 
-        return new DummyEmptyTimer(id, callback, delay);
+        return new DummyEmptyTimer(id, {
+            callback: callback,
+            delay: delay
+        });
     }
 
     /**

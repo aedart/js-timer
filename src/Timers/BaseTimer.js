@@ -45,19 +45,21 @@ class BaseTimer {
      * Create a Base Timer instance
      *
      * @param {string} id           Id of timer
-     * @param {function} [callback] Callback function to invoke
-     * @param {number} [delay]      Delay in milliseconds
+     * @param {object} [options]    Timer options
      *
      * @throws {TypeError} Abstract class
      */
-    constructor(id, callback = () => {}, delay = 1000){
+    constructor(id, options = {callback: () => {}, delay: 1000}){
         if(new.target === BaseTimer){
             throw new TypeError('Cannot create Base Timer instance, class is abstract');
         }
 
         this.id = id;
-        this.callback = callback;
-        this.delay = delay;
+
+        // Populate with options
+        for(let option in options){
+            this[option] = options[option];
+        }
     }
 
     /**
