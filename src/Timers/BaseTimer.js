@@ -129,6 +129,15 @@ class BaseTimer {
     get nativeId() {
         return this[_nativeId];
     }
+
+    /**
+     * Returns the to string tag
+     *
+     * @return {string}
+     */
+    get [Symbol.toStringTag](){
+        return this.constructor.name + '(' + this.id + ')';
+    }
 }
 
 export default BaseTimer;

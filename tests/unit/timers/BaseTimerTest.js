@@ -36,4 +36,15 @@ describe('Base Timer', function(){
 
         expect(timer.nativeId).toBe(nativeId);
     });
+
+    it('has a string tag', function () {
+        let timer = TestHelper.makeEmptyTimer();
+
+        let result = timer.toString();
+
+        console.log(timer.toString());
+
+        expect(result).not.toBeFalsy(); // Can't exactly test this too well...
+                                        // not all FireFox does not seem to support it to well.
+    });
 });
