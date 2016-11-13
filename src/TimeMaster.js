@@ -147,9 +147,9 @@ class TimeMaster {
     /**
      * Add a timer
      *
-     * Method will delete eventual existing timer that shared the same id
+     * Method will remove eventual existing timer that shared the same id
      *
-     * @see TimeMaster.delete()
+     * @see TimeMaster.remove()
      *
      * @param {BaseTimer} timer
      * @param {boolean} [start]     If true, will start the timer
@@ -157,8 +157,8 @@ class TimeMaster {
      * @return {BaseTimer} The timer that has been added
      */
     add(timer, start = true){
-        // If there is an old timer, we must delete it
-        this.delete(timer.id);
+        // If there is an old timer, we must remove it
+        this.remove(timer.id);
 
         // Add Timer Master reference
         timer.timeMaster = this;
@@ -198,13 +198,13 @@ class TimeMaster {
     }
 
     /**
-     * Cancel and delete timer that matches id
+     * Cancel and remove timer that matches id
      *
      * @param {string} id
      *
      * @return {boolean}
      */
-    delete(id){
+    remove(id){
         let timer = this.get(id);
 
         if(timer !== null){
@@ -227,10 +227,10 @@ class TimeMaster {
     /**
      * Cancels and deletes all existing timers
      *
-     * @see TimeMaster.delete()
+     * @see TimeMaster.remove()
      */
     clear(){
-        // Cancel and delete all timers
+        // Cancel and remove all timers
         this.timers.forEach((timer) => {
             this._cancelAndDelete(timer);
         });
