@@ -220,7 +220,7 @@ class TimeMaster {
      *
      * @return {number}
      */
-    count(){
+    get count(){
         return this.timers.size;
     }
 
