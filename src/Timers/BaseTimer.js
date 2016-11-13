@@ -44,7 +44,7 @@ class BaseTimer {
     /**
      * Create a Base Timer instance
      *
-     * @param {string} id           Id of time timer
+     * @param {string} id           Id of timer
      * @param {function} [callback] Callback function to invoke
      * @param {number} [delay]      Delay in milliseconds
      */
