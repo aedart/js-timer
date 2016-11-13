@@ -3,6 +3,7 @@
 import BaseTimer from '../../src/Timers/BaseTimer';
 import Timeout from '../../src/Timers/Timeout';
 import Interval from '../../src/Timers/Interval';
+import Limited from '../../src/Timers/Limited';
 import faker from 'faker';
 
 /**
@@ -71,6 +72,30 @@ class TestHelper {
         return new Interval(id, {
             callback: callback,
             delay: delay
+        });
+    }
+
+    /**
+     * Returns a new Limited instance
+     *
+     * @param {string|null} [id] If null, an id is generated
+     * @param {function} [callback] Callback function to invoke
+     * @param {number} [delay]      Delay in milliseconds
+     * @param {number} [limit]      Amount of times...
+     * @param {function} [onLimitReached] Callback function to invoke, once limit has been reached
+     *
+     * @return {Limited}
+     */
+    static makeLimited(id = null, callback = () => {}, delay = 1000, limit = 10, onLimitReached = () => {}){
+        if(id === null){
+            id = faker.random.uuid();
+        }
+
+        return new Limited(id, {
+            callback: callback,
+            delay: delay,
+            limit: limit,
+            onLimitReached: onLimitReached
         });
     }
 }
