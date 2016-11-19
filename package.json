@@ -1,7 +1,7 @@
 {
   "name": "@aedart/js-timer",
   "version": "0.9.0",
-  "description": "EXPERIMENT",
+  "description": "Container for timeouts and intervals that allows you to keep track of them.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/karma start karma.conf.js"
@@ -12,8 +12,8 @@
   },
   "keywords": [
     "timer",
-    "set timeout",
-    "set interval"
+    "timeout",
+    "interval"
   ],
   "author": "Alin Eugen Deac <aedart@gmail.com> (https://github.com/aedart)",
   "license": "BSD-3-Clause",
