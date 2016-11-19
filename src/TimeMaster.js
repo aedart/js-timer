@@ -15,7 +15,7 @@ const _timers = Symbol('timers');
 /**
  * TimeMaster
  *
- * @description Collection of various timers
+ * @description Container of various timers
  *
  * @author Alin Eugen Deac <aedart@gmail.com>
  */
