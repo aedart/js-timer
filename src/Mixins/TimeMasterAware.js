@@ -2,9 +2,6 @@
 
 import { IoCFacade } from '@aedart/js-service-provider';
 import { TIME_MASTER_CLASS } from './../Contracts/Services';
-
-'use strict';
-
 import {Mixin} from 'mixwith/src/mixwith';
 
 /**
