@@ -2,7 +2,7 @@
 
 import { IoCFacade } from '@aedart/js-service-provider';
 import { TIME_MASTER_CLASS } from './../Contracts/Services';
-import {Mixin} from 'mixwith/src/mixwith';
+import {DeclareMixin} from '@vcas/js-mixin';
 
 /**
  * time Master symbol
@@ -17,7 +17,7 @@ const _timeMaster = Symbol('time-master');
  *
  * @return {TimeMasterAware}
  */
-export default Mixin((superClass) => class TimeMasterAware extends superClass {
+export default DeclareMixin((superClass) => class TimeMasterAware extends superClass {
 
     /**
      * Set time Master
