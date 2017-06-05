@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/aedart/js-timer#readme",
   "dependencies": {
-    "@aedart/js-service-provider": "^1.2.0"
+    "@aedart/js-service-provider": "^1.2.0",
+    "@vcas/js-mixin": "~1.0"
   },
   "devDependencies": {
     "@aedart/js-ioc": "^1.2.0",
