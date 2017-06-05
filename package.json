@@ -1,6 +1,6 @@
 {
   "name": "@aedart/js-timer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Container for timeouts and intervals that allows you to keep track of them.",
   "main": "index.js",
   "scripts": {
