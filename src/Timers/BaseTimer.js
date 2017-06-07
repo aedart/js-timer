@@ -1,7 +1,7 @@
 'use strict';
 
 import TimerMasterAware from './../Mixins/TimeMasterAware';
-import mix from '@vcas/js-mixin';
+import mix from '@vestergaard-company/js-mixin';
 
 /**
  * id symbol
